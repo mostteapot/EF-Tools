@@ -1,120 +1,79 @@
-# README: Put the itemiconcompositebig files into the itemiconbig folder, and put this script in the itemiconbig folder
-
 from PIL import Image
+import json
 import os
 
-def ensure_png(filename):
-    # If user typed an extension, keep it
-    if os.path.splitext(filename)[1]:
-        return filename
-    return filename + ".png"
+bg_folder = "backgrounds" # itemiconcompositedecobig for the background images
+itemicon_folder = "itemiconbig" # the item you want to make
+composite_folder = "composite" # itemiconcompositedecobig for the small addon added last
+
+def ensure_png(name):
+    if os.path.splitext(name)[1]:
+        return name
+    return name + ".png"
+
+def load_image(folder, name):
+    path = os.path.join(folder, ensure_png(name))
+    return Image.open(path).convert("RGBA")
 
 def scale_image(img, scale):
-    return img.resize((int(img.width * scale), int(img.height * scale)),Image.LANCZOS)
+    if scale == 1:
+        return img
+    return img.resize(
+        (int(img.width * scale), int(img.height * scale)),
+        Image.LANCZOS
+    )
 
-# User input
-mode = input("Enter mode (Operator/Gear/Med/Food/Upgrade/Template/Blueprint/Essence): ")
+# load config once
+with open("rarity_preset.json") as f:
+    CONFIG = json.load(f)
 
-if mode in ("Template", "Upgrade"):
-    next
-else:
-    rarity = int(input("Enter rarity: "))
+def combine(mode, overlay_name, output_name, rarity=None):
 
-if mode == "Operator":
-    rarity_preset = {
-        4: "item_potential_4star",
-        5: "item_potential_5star",
-        6: "item_potential_6star",
-    }
-    x = 0
-    y = 0
-if mode == "Gear":
-    rarity_preset = {
-        1: "item_icon_bg_equip_qualitycolor_grey",
-        2: "item_icon_bg_equip_qualitycolor_green",
-        3: "item_icon_bg_equip_qualitycolor_blue",
-        4: "item_icon_bg_equip_qualitycolor_purple",
-        5: "item_icon_bg_equip_qualitycolor_gold",
-    }
-    x = 75
-    y = 40
-if mode == "Med":
-    rarity_preset = {
-        1: "item_icon_bg_medicine_qualitycolor_grey",
-        2: "item_icon_bg_medicine_qualitycolor_green",
-        3: "item_icon_bg_medicine_qualitycolor_blue",
-        4: "item_icon_bg_medicine_qualitycolor_purple",
-        5: "item_icon_bg_medicine_qualitycolor_gold",
-    }
-    x = 75
-    y = 40
-if mode == "Food":
-    rarity_preset = {
-        1: "item_icon_bg_food_qualitycolor_grey",
-        2: "item_icon_bg_food_qualitycolor_green",
-        3: "item_icon_bg_food_qualitycolor_blue",
-        4: "item_icon_bg_food_qualitycolor_purple",
-        5: "item_icon_bg_food_qualitycolor_gold",
-    }
-    x = 75
-    y = 40
-if mode == "Upgrade":
-    x = 0
-    y = 0
-if mode == "Template":
-    x = 75
-    y = 40
-if mode == "Blueprint":
-    rarity_preset = {
-        1: "item_icon_bg_blueprint_gray",
-        2: "item_icon_bg_blueprint_green",
-        3: "item_icon_bg_blueprint_blue",
-        4: "item_icon_bg_blueprint_purple",
-        5: "item_icon_bg_blueprint_yellow",
-        6: "item_icon_bg_blueprint_orange",
-        7: "item_icon_bg_blueprint_cyan",
-    }
-    x = 0
-    y = 0
-if mode == "Essence":
-    rarity_preset = {
-        1: "item_gem_rarity_2",
-        2: "item_gem_rarity_2",
-        3: "item_gem_rarity_3",
-        4: "item_gem_rarity_4",
-        5: "item_gem_rarity_5",
-    }
-    x = 9   # X = 8 or 9 and Y = -8 or -9 is interchangable, need further research
-    y = -8  # but for now the difference is negligible
+    mode = mode.capitalize()
 
-if mode in ("Template", "Upgrade"):
-    if mode == "Template":
-        base_path = ensure_png("item_icon_bg_blueprint")
-        overlay_path = ensure_png(input("Enter facility image name or path: ").strip())
-    if mode == "Upgrade":
-        base_path = ensure_png(input("Enter base item name or path: ").strip())
-        overlay_path = ensure_png("item_icon_mark_upgrade")
-else:
-    base_path = ensure_png(rarity_preset[rarity])
-    overlay_path = ensure_png(input("Enter overlay image name or path: ").strip())
-output_path = ensure_png(input("Enter output filename: ").strip())
+    if mode not in ("Template", "Upgrade"):
 
-# Load images
-base = Image.open(base_path).convert("RGBA")
-overlay = Image.open(overlay_path).convert("RGBA")
-mode = mode.strip().capitalize()
-if mode in ("Gear", "Med", "Food", "Template"):
-    overlay = scale_image(overlay, 0.7)
+        data = CONFIG[mode]
 
-# Paste overlay using its alpha channel
-x2 = 0
-y2 = 0
-base.paste(overlay, (x, y), overlay)
+        base_name = data["rarities"][str(rarity)]
+        x, y = data["offset"]
+        scale = data["scale"]
 
-if mode in ("Gear", "Med", "Food", "Template"):
-    unlock = Image.open(ensure_png("item_icon_mark_unlocked")).convert("RGBA")
-    base.paste(unlock, (x2, y2), unlock)
+        base = load_image(bg_folder, base_name)
+        overlay = load_image(itemicon_folder, overlay_name)
 
-base.save(output_path)
+        overlay = scale_image(overlay, scale)
 
-print("Image saved as:", output_path)
+        base.paste(overlay, (x, y), overlay)
+
+        if data["unlock_icon"]:
+            unlock = load_image(composite_folder, "item_icon_mark_unlocked")
+            base.paste(unlock, (0, 0), unlock)
+
+    elif mode == "Template":
+
+        base = load_image(bg_folder, "item_icon_bg_blueprint")
+        overlay = load_image(itemicon_folder, overlay_name)
+
+        overlay = scale_image(overlay, 0.7)
+        base.paste(overlay, (75, 40), overlay)
+
+    elif mode == "Upgrade":
+
+        base = load_image(itemicon_folder, overlay_name)
+        upgrade = load_image(composite_folder, "item_icon_mark_upgrade")
+        base.paste(upgrade, (0, 0), upgrade)
+
+    base.save(ensure_png(output_name))
+
+if __name__ == "__main__":
+    print("Available modes: Operator/Gear/Med/Food/Blueprint/Essence/Bottle")
+    mode = input("Mode: ")
+    overlay = input("Overlay: ")
+    output = input("Output: ")
+
+    rarity = None
+    if mode not in ("Template", "Upgrade"):
+        rarity = input("Rarity: ")
+
+    combine(mode, overlay, output, rarity)

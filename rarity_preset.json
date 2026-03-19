@@ -1,0 +1,92 @@
+{
+  "Operator": {
+    "offset": [0, 0],
+    "scale": 1.0,
+    "unlock_icon": false,
+    "rarities": {
+      "4": "item_potential_4star",
+      "5": "item_potential_5star",
+      "6": "item_potential_6star"
+    }
+  },
+
+  "Gear": {
+    "offset": [75, 40],
+    "scale": 0.7,
+    "unlock_icon": true,
+    "rarities": {
+      "1": "item_icon_bg_equip_qualitycolor_grey",
+      "2": "item_icon_bg_equip_qualitycolor_green",
+      "3": "item_icon_bg_equip_qualitycolor_blue",
+      "4": "item_icon_bg_equip_qualitycolor_purple",
+      "5": "item_icon_bg_equip_qualitycolor_gold"
+    }
+  },
+
+  "Med": {
+    "offset": [75, 40],
+    "scale": 0.7,
+    "unlock_icon": true,
+    "rarities": {
+      "1": "item_icon_bg_medicine_qualitycolor_grey",
+      "2": "item_icon_bg_medicine_qualitycolor_green",
+      "3": "item_icon_bg_medicine_qualitycolor_blue",
+      "4": "item_icon_bg_medicine_qualitycolor_purple",
+      "5": "item_icon_bg_medicine_qualitycolor_gold"
+    }
+  },
+
+  "Food": {
+    "offset": [75, 40],
+    "scale": 0.7,
+    "unlock_icon": true,
+    "rarities": {
+      "1": "item_icon_bg_food_qualitycolor_grey",
+      "2": "item_icon_bg_food_qualitycolor_green",
+      "3": "item_icon_bg_food_qualitycolor_blue",
+      "4": "item_icon_bg_food_qualitycolor_purple",
+      "5": "item_icon_bg_food_qualitycolor_gold"
+    }
+  },
+
+  "Blueprint": {
+    "offset": [0, 0],
+    "scale": 1.0,
+    "unlock_icon": false,
+    "rarities": {
+      "1": "item_icon_bg_blueprint_gray",
+      "2": "item_icon_bg_blueprint_green",
+      "3": "item_icon_bg_blueprint_blue",
+      "4": "item_icon_bg_blueprint_purple",
+      "5": "item_icon_bg_blueprint_yellow",
+      "6": "item_icon_bg_blueprint_orange",
+      "7": "item_icon_bg_blueprint_cyan"
+    }
+  },
+
+  "Essence": {
+    "offset": [9, -8],
+    "scale": 1.0,
+    "unlock_icon": false,
+    "rarities": {
+      "1": "item_gem_rarity_2",
+      "2": "item_gem_rarity_2",
+      "3": "item_gem_rarity_3",
+      "4": "item_gem_rarity_4",
+      "5": "item_gem_rarity_5"
+    }
+  },
+
+  "Bottle": {
+    "offset": [70, 70],
+    "scale": 0.45,
+    "unlock_icon": false,
+    "rarities": {
+      "1": "item_glass_bottle_liquid",
+      "2": "item_iron_bottle_liquid",
+      "3": "item_iron_enr_bottle_liquid",
+      "4": "item_glass_enr_bottle_liquid",
+      "5": "item_copper_bottle_liquid"
+    }
+  }
+}
