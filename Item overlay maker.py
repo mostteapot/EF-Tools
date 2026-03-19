@@ -5,6 +5,7 @@ import os
 bg_folder = "backgrounds" # itemiconcompositedecobig for the background images
 itemicon_folder = "itemiconbig" # the item you want to make
 composite_folder = "composite" # itemiconcompositedecobig for the small addon added last
+output_folder = "output" # output folder
 
 def ensure_png(name):
     if os.path.splitext(name)[1]:
@@ -64,7 +65,9 @@ def combine(mode, overlay_name, output_name, rarity=None):
         upgrade = load_image(composite_folder, "item_icon_mark_upgrade")
         base.paste(upgrade, (0, 0), upgrade)
 
-    base.save(ensure_png(output_name))
+    os.makedirs(output_folder, exist_ok=True)
+    output_path = os.path.join(output_folder, ensure_png(output_name))
+    base.save(output_path)
 
 if __name__ == "__main__":
     print("Available modes: Operator/Gear/Med/Food/Blueprint/Essence/Bottle")
