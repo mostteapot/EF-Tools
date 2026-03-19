@@ -24,8 +24,8 @@ def main():
             break
 
         overlay = input("Overlay: ").strip()
-        output = input("Output name: ").strip()
         rarity = input("Rarity: ").strip()
+        output = input("Output name: ").strip()
 
         item = {
             "mode": mode.capitalize(),
