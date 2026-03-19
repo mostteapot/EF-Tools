@@ -1,5 +1,5 @@
 import json
-from Item_overlay_maker import combine
+from main import combine
 
 with open("item_list.json") as f:
     item_list = json.load(f)
