@@ -14,28 +14,31 @@ def save_items(items):
         json.dump(items, f, indent=2)
 
 def main():
-    print("Enter item details:\n")
-
-    mode = input("Mode: ").strip().capitalize()
-    overlay = input("Overlay: ").strip()
-    output = input("Output name: ").strip()
-    rarity = input("Rarity/Index: ").strip()
-
-    item = {
-        "mode": mode,
-        "overlay": overlay,
-        "output": output,
-    }
-    
-    item["rarity"] = int(rarity)
-
     items = load_items()
-    items.append(item)
-    save_items(items)
 
-    print("\nAdded item:")
-    print(item)
-    print(f"\nTotal items: {len(items)}")
+    while True:
+        print("\nEnter item (or type 'q' to quit)\n")
+        print("Available Modes: Operator/Gear/Med/Food/Blueprint/Essence/Bottle")
+        mode = input("Mode: ").strip()
+        if mode.lower() == "q":
+            break
+
+        overlay = input("Overlay: ").strip()
+        output = input("Output name: ").strip()
+        rarity = input("Rarity: ").strip()
+
+        item = {
+            "mode": mode.capitalize(),
+            "overlay": overlay,
+            "output": output
+        }
+
+        item["rarity"] = int(rarity)
+
+        items.append(item)
+
+    save_items(items)
+    print(f"\nSaved {len(items)} items.")
 
 if __name__ == "__main__":
     main()
