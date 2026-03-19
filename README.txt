@@ -1,6 +1,6 @@
 README:
 
-- Item overlay maker: the main tool used to compile images
+- main: the main tool used to compile images
 - mass compiler: run this after you fill in item_list.json
 - item list maker: tool use to fill in item_list.json
 
