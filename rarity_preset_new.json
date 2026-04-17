@@ -1,0 +1,92 @@
+{
+  "Operator": {
+    "offset": [0, 0],
+    "scale": 1.0,
+    "unlock_icon": false,
+    "rarities": {
+      "4": { "name": "4", "file": "item_potential_4star"},
+      "5": { "name": "5", "file": "item_potential_5star"},
+      "6": { "name": "6", "file": "item_potential_6star"}
+    }
+  },
+
+  "Gear": {
+    "offset": [75, 40],
+    "scale": 0.7,
+    "unlock_icon": true,
+    "rarities": {
+      "1": { "name": "Gray", "file": "item_icon_bg_equip_qualitycolor_grey"},
+      "2": { "name": "Green", "file": "item_icon_bg_equip_qualitycolor_green"},
+      "3": { "name": "Blue", "file": "item_icon_bg_equip_qualitycolor_blue"},
+      "4": { "name": "Purple", "file": "item_icon_bg_equip_qualitycolor_purple"},
+      "5": { "name": "Gold", "file": "item_icon_bg_equip_qualitycolor_gold"}
+    }
+  },
+
+  "Med": {
+    "offset": [75, 40],
+    "scale": 0.7,
+    "unlock_icon": true,
+    "rarities": {
+      "1": { "name": "Gray", "file": "item_icon_bg_medicine_qualitycolor_grey"},
+      "2": { "name": "Green", "file": "item_icon_bg_medicine_qualitycolor_green"},
+      "3": { "name": "Blue", "file": "item_icon_bg_medicine_qualitycolor_blue"},
+      "4": { "name": "Purple", "file": "item_icon_bg_medicine_qualitycolor_purple"},
+      "5": { "name": "Gold", "file": "item_icon_bg_medicine_qualitycolor_gold"}
+    }
+  },
+
+  "Food": {
+    "offset": [75, 40],
+    "scale": 0.7,
+    "unlock_icon": true,
+    "rarities": {
+      "1": { "name": "Gray", "file": "item_icon_bg_food_qualitycolor_grey"},
+      "2": { "name": "Green", "file": "item_icon_bg_food_qualitycolor_green"},
+      "3": { "name": "Blue", "file": "item_icon_bg_food_qualitycolor_blue"},
+      "4": { "name": "Purple", "file": "item_icon_bg_food_qualitycolor_purple"},
+      "5": { "name": "Gold", "file": "item_icon_bg_food_qualitycolor_gold"}
+    }
+  },
+
+  "Blueprint": {
+    "offset": [0, 0],
+    "scale": 1.0,
+    "unlock_icon": false,
+    "rarities": {
+      "1": { "name": "Gray", "file": "item_icon_bg_blueprint_gray"},
+      "2": { "name": "Green", "file": "item_icon_bg_blueprint_green"},
+      "3": { "name": "Blue", "file": "item_icon_bg_blueprint_blue"},
+      "4": { "name": "Purple", "file": "item_icon_bg_blueprint_purple"},
+      "5": { "name": "Yellow", "file": "item_icon_bg_blueprint_yellow"},
+      "6": { "name": "Orange", "file": "item_icon_bg_blueprint_orange"},
+      "7": { "name": "Cyan", "file": "item_icon_bg_blueprint_cyan"}
+    }
+  },
+
+  "Essence": {
+    "offset": [9, -8],
+    "scale": 1.0,
+    "unlock_icon": false,
+    "rarities": {
+      "1": { "name": "Turbid", "file": "item_gem_rarity_2"},
+      "2": { "name": "Stable", "file": "item_gem_rarity_2"},
+      "3": { "name": "Clean", "file": "item_gem_rarity_3"},
+      "4": { "name": "Pure", "file": "item_gem_rarity_4"},
+      "5": { "name": "Flawless", "file": "item_gem_rarity_5"}
+    }
+  },
+
+  "Bottle": {
+    "offset": [70, 70],
+    "scale": 0.45,
+    "unlock_icon": false,
+    "rarities": {
+      "1": { "name": "Amethyst", "file": "item_glass_bottle_liquid"},
+      "2": { "name": "Cryston", "file": "item_glass_enr_bottle_liquid"},
+      "3": { "name": "Ferrium", "file": "item_iron_bottle_liquid"},
+      "4": { "name": "Steel", "file": "item_iron_enr_bottle_liquid"},
+      "5": { "name": "Cuprium", "file": "item_copper_bottle_liquid"}
+    }
+  }
+}
