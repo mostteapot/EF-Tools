@@ -17,6 +17,10 @@ def ensure_png(name):
 
 def load_image(folder, name):
     path = os.path.join(folder, ensure_png(name))
+    
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Missing file: {path}")
+    
     return Image.open(path).convert("RGBA")
 
 def scale_image(img, scale):
@@ -83,8 +87,7 @@ def get_rarity_key(selected_label):
             return key
     return None
 
-
-def combine():
+def generate():
     try:
         mode = mode_var.get().capitalize()
         overlay = overlay_entry.get()
@@ -148,6 +151,7 @@ def preview_image(event=None):
         preview_label.image = tk_img
 
     except Exception as e:
+        #print("Preview error:", e)
         pass
 
 
@@ -214,13 +218,6 @@ mode_dropdown = ttk.Combobox(
 mode_dropdown.pack(fill="x")
 mode_dropdown.bind("<<ComboboxSelected>>", on_mode_change)
 
-# rarity
-tk.Label(right_frame, text="Type").pack(anchor="w")
-rarity_var = tk.StringVar()
-rarity_dropdown = ttk.Combobox(right_frame, textvariable=rarity_var, state="readonly")
-rarity_dropdown.pack(fill="x")
-rarity_dropdown.bind("<<ComboboxSelected>>", preview_image)
-
 # overlay
 tk.Label(right_frame, text="Overlay").pack(anchor="w")
 overlay_entry = tk.Entry(right_frame)
@@ -232,7 +229,14 @@ tk.Label(right_frame, text="Output Name").pack(anchor="w")
 output_entry = tk.Entry(right_frame)
 output_entry.pack(fill="x")
 
+# rarity
+tk.Label(right_frame, text="Type").pack(anchor="w")
+rarity_var = tk.StringVar()
+rarity_dropdown = ttk.Combobox(right_frame, textvariable=rarity_var, state="readonly")
+rarity_dropdown.pack(fill="x")
+rarity_dropdown.bind("<<ComboboxSelected>>", preview_image)
+
 # button
-tk.Button(right_frame, text="Combine", command=combine).pack(pady=10)
+tk.Button(right_frame, text="Combine", command=generate).pack(pady=10)
 
 root.mainloop()
