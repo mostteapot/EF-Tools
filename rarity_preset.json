@@ -83,10 +83,11 @@
     "unlock_icon": false,
     "rarities": {
       "1": "item_glass_bottle_liquid",
-      "2": "item_iron_bottle_liquid",
+      "2": "item_glass_enr_bottle_liquid",
       "3": "item_iron_enr_bottle_liquid",
-      "4": "item_glass_enr_bottle_liquid",
-      "5": "item_copper_bottle_liquid"
+      "4": "item_iron_bottle_liquid",
+      "5": "item_copper_bottle_liquid",
+      "6": "item_copper_enr_bottle_liquid"
     }
   }
 }
