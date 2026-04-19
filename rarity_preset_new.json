@@ -86,7 +86,8 @@
       "2": { "name": "Cryston", "file": "item_glass_enr_bottle_liquid"},
       "3": { "name": "Ferrium", "file": "item_iron_bottle_liquid"},
       "4": { "name": "Steel", "file": "item_iron_enr_bottle_liquid"},
-      "5": { "name": "Cuprium", "file": "item_copper_bottle_liquid"}
+      "5": { "name": "Cuprium", "file": "item_copper_bottle_liquid"},
+      "6": { "name": "Hetonite", "file": "item_copper_enr_bottle_liquid"}
     }
   }
 }
