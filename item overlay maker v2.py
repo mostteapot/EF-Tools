@@ -64,6 +64,9 @@ def combine(mode, overlay_name, output_name=None, rarity=None, preview=False):
         overlay = scale_image(overlay, 0.7)
         base.paste(overlay, (75, 40), overlay)
 
+        unlock = load_image(composite_folder, "item_icon_mark_unlocked")
+        base.paste(unlock, (0, 0), unlock)
+
     elif mode == "Upgrade":
         base = load_image(itemicon_folder, overlay_name)
         upgrade = load_image(composite_folder, "item_icon_mark_upgrade")
